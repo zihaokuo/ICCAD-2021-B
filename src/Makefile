@@ -1,21 +1,20 @@
 CXX := g++
-TARGET := cell_move_router
+TARGET := ../bin/cell_move_router
 OPENMPFLAG := 
 CXXFLAGS := -std=c++11 -O3 -static -static-libstdc++ -static-libgcc
 WARNINGFLAGS := -Wall -Wextra
-INCLUDE := src/include
-SRC_DIRS := src\
-			src/lib\
-			src/lib/cell_move_router\
-			src/lib/cell_move_router/Input/Raw\
-			src/lib/cell_move_router/Input/Processed\
-			src/lib/cell_move_router/Grid\
-			src/lib/cell_move_router/Router\
-			src/lib/cell_move_router/RegionCalculator\
-			src/lib/cell_move_router/Mover
+INCLUDE := include
+SRC_DIRS := lib\
+			lib/cell_move_router\
+			lib/cell_move_router/Input/Raw\
+			lib/cell_move_router/Input/Processed\
+			lib/cell_move_router/Grid\
+			lib/cell_move_router/Router\
+			lib/cell_move_router/RegionCalculator\
+			lib/cell_move_router/Mover
 FLUTE_WRAPPER_DIR := $(INCLUDE)/Third/Flute3-Cpp-Wrapper
 FLUTE_WRAPPER_LIB := $(FLUTE_WRAPPER_DIR)/libflute3wrapper.a
-SRCS := $(wildcard $(SRC_DIRS:=/*.cpp))
+SRCS := main.cpp $(wildcard $(SRC_DIRS:=/*.cpp))
 OBJS := $(SRCS:.cpp=.o)
 DEPS = $(OBJS:.o=.d)
 
@@ -44,8 +43,8 @@ endif
 
 test: $(TARGET)
 	@echo test on case$(TEST_CASE_ID)
-	./$(TARGET) benchmark/case$(TEST_CASE_ID).txt evaluator/output_$(TEST_CASE_ID).txt
-	./evaluator/evaluator benchmark/case$(TEST_CASE_ID).txt evaluator/output_$(TEST_CASE_ID).txt
+	./$(TARGET) ../benchmark/case$(TEST_CASE_ID).txt ../evaluator/output_$(TEST_CASE_ID).txt
+	../evaluator/evaluator ../benchmark/case$(TEST_CASE_ID).txt ../evaluator/output_$(TEST_CASE_ID).txt
 
 .PHONY: all clean test
 -include $(DEPS)

@@ -29,5 +29,11 @@ void Solver::solve() {
   std::cerr << "  CurrentCost: " << MoveCost * 0.0001 << '\n';
   std::cerr << "  ReducedCost: " << (FirstRerouteCost - MoveCost) * 0.0001
             << '\n';
+  // Router.rerouteAll();
+  // FirstRerouteCost = GridManager.getCurrentCost();
+  // std::cerr << "After First re-route:\n";
+  // std::cerr << "  CurrentCost: " << FirstRerouteCost * 0.0001 << '\n';
+  // std::cerr << "  ReducedCost: " << (OriginalCost - FirstRerouteCost) * 0.0001
+  //           << '\n';            
 }
 } // namespace cell_move_router
